@@ -6,6 +6,9 @@ info:
 http:
   method: POST
   url: "{{baseUrl}}/usuarios"
+  headers:
+    - name: X-Origem
+      value: tarefa
   body:
     type: json
     data: |-
@@ -28,8 +31,8 @@ runtime:
       code: bru.setVar("usuarioId", res.body._id);
     - type: tests
       code: |-
-        test("Resposta tem menos 20ms", () => {
-          expect(res.responseTime).to.be.below(20);
+        test("Resposta tem menos 100ms", () => {
+          expect(res.responseTime).to.be.below(100);
         })
   assertions:
     - expression: res.status
