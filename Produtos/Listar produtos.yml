@@ -1,0 +1,32 @@
+info:
+  name: Listar produtos
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/produtos"
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: console.log(bru.getProcessEnv("API_TOKEN"))
+    - type: tests
+      code: |-
+        test("Content-Type é JSON", () => {
+          expect(res.headers["content-type"]).to.include("application/json");
+        });
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "200"
+    - expression: res.body.produtos
+      operator: isArray
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

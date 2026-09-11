@@ -1,0 +1,33 @@
+info:
+  name: Criar carrinho
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/carrinhos"
+  body:
+    type: json
+    data: |-
+      {
+        "produtos": [
+          {
+            "idProduto": "BeeJh5lz3k6kSIzA",
+            "quantidade": 1
+          },
+          {
+            "idProduto": "YaeJ455lz3k6kSIzA",
+            "quantidade": 3
+          }
+        ]
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

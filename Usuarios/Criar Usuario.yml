@@ -1,0 +1,50 @@
+info:
+  name: Criar Usuario
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/usuarios"
+  body:
+    type: json
+    data: |-
+      {
+        "nome": "{{nomeGerado}}",
+        "email": "{{emailGerado}}",
+        "password": "teste123",
+        "administrador": "true"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: before-request
+      code: |-
+        bru.setVar("emailGerado", bru.interpolate("{{$randomEmail}}"));
+
+        bru.setVar("nomeGerado", bru.interpolate("{{$randomFullName}}"));
+    - type: after-response
+      code: bru.setVar("usuarioId", res.body._id);
+    - type: tests
+      code: |-
+        test("Resposta tem menos 20ms", () => {
+          expect(res.responseTime).to.be.below(20);
+        })
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "201"
+      description: Status é 201 - usuario criado
+    - expression: res.body._id
+      operator: isDefined
+    - expression: res.body.message
+      operator: eq
+      value: Cadastro realizado com sucesso
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

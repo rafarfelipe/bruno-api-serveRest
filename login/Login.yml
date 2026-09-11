@@ -1,0 +1,30 @@
+info:
+  name: Login
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/login"
+  body:
+    type: json
+    data: |-
+      {
+        "email": "fulano@qa.com",
+        "password": "teste"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const token = res.body.authorization.replace("Bearer ", "");
+        bru.setVar("token", token);
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

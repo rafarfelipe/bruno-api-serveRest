@@ -1,0 +1,11 @@
+name: local
+variables:
+  - name: baseUrl
+    value: http://localhost:3000
+    description: ""
+  - name: email
+    value: fulano.curso@qa.com
+    description: ""
+  - secret: true
+    name: password
+    description: ""
