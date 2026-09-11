@@ -16,7 +16,13 @@ runtime:
       code: |-
         test("Content-Type é JSON", () => {
           expect(res.headers["content-type"]).to.include("application/json");
-        });
+        })
+
+        test("Todo produto tem preço mínimo de R$ 1", () => {
+          res.body.produtos.forEach((produto) => {
+            expect(produto.preco).to.be.at.least(1);
+          });
+        })
   assertions:
     - expression: res.status
       operator: eq
