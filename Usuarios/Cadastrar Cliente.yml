@@ -1,0 +1,42 @@
+info:
+  name: Cadastrar Cliente
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: "{{baseUrl}}/usuarios"
+  body:
+    type: json
+    data: |-
+      {
+        "nome": "{{nomeCliente}}",
+        "email": "{{emailCliente}}",
+        "password": "teste123",
+        "administrador": "false"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: before-request
+      code: |-
+        bru.setVar("emailCliente", "cliente-" + bru.interpolate("{{$randomEmail}}"));
+
+        bru.setVar("nomeCliente", bru.interpolate("{{$randomFullName}}"));
+    - type: after-response
+      code: bru.setVar("clienteId", res.body._id);
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "201"
+    - expression: res.body.message
+      operator: eq
+      value: Cadastro realizado com sucesso
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

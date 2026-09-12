@@ -1,0 +1,36 @@
+info:
+  name: Cadastrar Produto sem Admin
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{baseUrl}}/produtos"
+  body:
+    type: json
+    data: |-
+      {
+        "nome": "Produto Sem Admin {{$timestamp}}",
+        "preco": 470,
+        "descricao": "Mouse",
+        "quantidade": 381
+      }
+  auth:
+    type: bearer
+    token: "{{tokenCliente}}"
+
+runtime:
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "403"
+    - expression: res.body.message
+      operator: eq
+      value: Rota exclusiva para administradores
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

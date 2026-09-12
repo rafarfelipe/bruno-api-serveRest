@@ -1,0 +1,29 @@
+info:
+  name: Buscar Produto Por Nome
+  type: http
+  seq: 4
+
+http:
+  method: GET
+  url: "{{baseUrl}}/produtos?nome={{produtoNome}}"
+  params:
+    - name: nome
+      value: "{{produtoNome}}"
+      type: query
+  auth: inherit
+
+runtime:
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "200"
+    - expression: res.body.quantidade
+      operator: eq
+      value: "1"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

@@ -1,0 +1,41 @@
+info:
+  name: Cadastrar Produtos
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/produtos"
+  body:
+    type: json
+    data: |-
+      {
+        "nome": "{{produtoNome}}",
+        "preco": 470,
+        "descricao": "Mouse",
+        "quantidade": 381
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+runtime:
+  scripts:
+    - type: before-request
+      code: bru.setVar("produtoNome", "Mouse gamer " + bru.interpolate("{{$timestamp}}"));
+    - type: after-response
+      code: bru.setVar("produtoId", res.body._id)
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "201"
+    - expression: res.body.message
+      operator: eq
+      value: Cadastro realizado com sucesso
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

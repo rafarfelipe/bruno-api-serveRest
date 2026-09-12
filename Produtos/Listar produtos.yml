@@ -10,8 +10,6 @@ http:
 
 runtime:
   scripts:
-    - type: after-response
-      code: console.log(bru.getProcessEnv("API_TOKEN"))
     - type: tests
       code: |-
         test("Content-Type é JSON", () => {

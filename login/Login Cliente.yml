@@ -1,7 +1,7 @@
 info:
-  name: Login
+  name: Login Cliente
   type: http
-  seq: 1
+  seq: 2
 
 http:
   method: POST
@@ -10,8 +10,8 @@ http:
     type: json
     data: |-
       {
-        "email": "fulano@qa.com",
-        "password": "teste"
+        "email": "{{emailCliente}}",
+        "password": "teste123"
       }
   auth: inherit
 
@@ -20,7 +20,14 @@ runtime:
     - type: after-response
       code: |-
         const token = res.body.authorization.replace("Bearer ", "");
-        bru.setVar("token", token);
+        bru.setVar("tokenCliente", token);
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "200"
+    - expression: res.body.authorization
+      operator: contains
+      value: Bearer
 
 settings:
   encodeUrl: true

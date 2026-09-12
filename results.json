@@ -1,0 +1,457 @@
+[
+  {
+    "iterationIndex": 0,
+    "results": [
+      {
+        "test": {
+          "filename": "Produtos\\Listar produtos.yml"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3000/produtos",
+          "headers": {
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "x-dns-prefetch-control": "off",
+            "x-frame-options": "SAMEORIGIN",
+            "strict-transport-security": "max-age=15552000; includeSubDomains",
+            "x-download-options": "noopen",
+            "x-content-type-options": "nosniff",
+            "x-xss-protection": "1; mode=block",
+            "content-type": "application/json; charset=utf-8",
+            "content-length": "435",
+            "date": "Fri, 11 Sep 2026 16:55:11 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "quantidade": 2,
+            "produtos": [
+              {
+                "nome": "Logitech MX Vertical",
+                "preco": 470,
+                "descricao": "Mouse",
+                "quantidade": 382,
+                "_id": "BeeJh5lz3k6kSIzA"
+              },
+              {
+                "nome": "Samsung 60 polegadas",
+                "preco": 5240,
+                "descricao": "TV",
+                "quantidade": 49977,
+                "_id": "K6leHdftCeOJj8BJ"
+              }
+            ]
+          },
+          "url": "http://localhost/produtos",
+          "responseTime": 23,
+          "duration": 23,
+          "size": 435
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [
+          {
+            "uid": "1i63scA25WtTgKzN0wtSF",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 200",
+            "rhsOperand": "200",
+            "operator": "eq",
+            "status": "pass"
+          },
+          {
+            "uid": "kgk0PFHZmTBLe9leDWSiE",
+            "lhsExpr": "res.body.produtos",
+            "rhsExpr": "isArray",
+            "rhsOperand": "",
+            "operator": "isArray",
+            "status": "pass"
+          }
+        ],
+        "testResults": [
+          {
+            "description": "Content-Type é JSON",
+            "status": "pass",
+            "uid": "EjbPMUuYK6ugLuK_tIzOa"
+          },
+          {
+            "description": "Todo produto tem preço mínimo de R$ 1",
+            "status": "pass",
+            "uid": "Lqj8B7TCqjfaBLgno7-f8"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.2810261,
+        "name": "Listar produtos",
+        "suitename": "C:\\bruno-api-serveRest\\Produtos\\Listar produtos",
+        "path": "Produtos\\Listar produtos.yml",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Usuarios\\Criar Usuario.yml"
+        },
+        "request": {
+          "method": "POST",
+          "url": "http://localhost:3000/usuarios",
+          "headers": {
+            "X-Origem": "tarefa",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"nome\": \"Sonya Davis\",\n  \"email\": \"Clemens_Stark-Weissnat@yahoo.com\",\n  \"password\": \"teste123\",\n  \"administrador\": \"true\"\n}"
+        },
+        "response": {
+          "status": 201,
+          "statusText": "Created",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "x-dns-prefetch-control": "off",
+            "x-frame-options": "SAMEORIGIN",
+            "strict-transport-security": "max-age=15552000; includeSubDomains",
+            "x-download-options": "noopen",
+            "x-content-type-options": "nosniff",
+            "x-xss-protection": "1; mode=block",
+            "content-type": "application/json; charset=utf-8",
+            "content-length": "82",
+            "date": "Fri, 11 Sep 2026 16:55:12 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "Mx3Ziujp65CNSibO"
+          },
+          "url": "http://localhost/usuarios",
+          "responseTime": 6,
+          "duration": 6,
+          "size": 82
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [
+          {
+            "uid": "yi-awjkJ5T-DRKhGQfRQ2",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 201",
+            "rhsOperand": "201",
+            "operator": "eq",
+            "status": "pass"
+          },
+          {
+            "uid": "asjXot7dopCkA26LEwqi1",
+            "lhsExpr": "res.body._id",
+            "rhsExpr": "isDefined",
+            "rhsOperand": "",
+            "operator": "isDefined",
+            "status": "pass"
+          },
+          {
+            "uid": "SAgeW8x3ee3o8rJ7HtALl",
+            "lhsExpr": "res.body.message",
+            "rhsExpr": "eq Cadastro realizado com sucesso",
+            "rhsOperand": "Cadastro realizado com sucesso",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [
+          {
+            "description": "Resposta tem menos 100ms",
+            "status": "pass",
+            "uid": "S_xMTmrH7f4IpNxg1qMIX"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.277252,
+        "name": "Criar Usuario",
+        "suitename": "C:\\bruno-api-serveRest\\Usuarios\\Criar Usuario",
+        "path": "Usuarios\\Criar Usuario.yml",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Usuarios\\Buscar usuario por ID.yml"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3000/usuarios/Mx3Ziujp65CNSibO",
+          "headers": {
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "x-dns-prefetch-control": "off",
+            "x-frame-options": "SAMEORIGIN",
+            "strict-transport-security": "max-age=15552000; includeSubDomains",
+            "x-download-options": "noopen",
+            "x-content-type-options": "nosniff",
+            "x-xss-protection": "1; mode=block",
+            "content-type": "application/json; charset=utf-8",
+            "content-length": "166",
+            "date": "Fri, 11 Sep 2026 16:55:12 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "nome": "Sonya Davis",
+            "email": "Clemens_Stark-Weissnat@yahoo.com",
+            "password": "teste123",
+            "administrador": "true",
+            "_id": "Mx3Ziujp65CNSibO"
+          },
+          "url": "http://localhost/usuarios/Mx3Ziujp65CNSibO",
+          "responseTime": 6,
+          "duration": 6,
+          "size": 166
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.0080203,
+        "name": "Buscar usuario por ID",
+        "suitename": "C:\\bruno-api-serveRest\\Usuarios\\Buscar usuario por ID",
+        "path": "Usuarios\\Buscar usuario por ID.yml",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Usuarios\\Alterar Usuario.yml"
+        },
+        "request": {
+          "method": "PUT",
+          "url": "http://localhost:3000/usuarios/Mx3Ziujp65CNSibO",
+          "headers": {
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"nome\": \"Rafael Felipe\",\n  \"email\": \"felipe@dev.com\",\n  \"password\": \"pwd123\",\n  \"administrador\": \"true\"\n}"
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "x-dns-prefetch-control": "off",
+            "x-frame-options": "SAMEORIGIN",
+            "strict-transport-security": "max-age=15552000; includeSubDomains",
+            "x-download-options": "noopen",
+            "x-content-type-options": "nosniff",
+            "x-xss-protection": "1; mode=block",
+            "content-type": "application/json; charset=utf-8",
+            "content-length": "50",
+            "date": "Fri, 11 Sep 2026 16:55:12 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "message": "Registro alterado com sucesso"
+          },
+          "url": "http://localhost/usuarios/Mx3Ziujp65CNSibO",
+          "responseTime": 6,
+          "duration": 6,
+          "size": 50
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.006581,
+        "name": "Alterar Usuario",
+        "suitename": "C:\\bruno-api-serveRest\\Usuarios\\Alterar Usuario",
+        "path": "Usuarios\\Alterar Usuario.yml",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Usuarios\\Excluir Usuario.yml"
+        },
+        "request": {
+          "method": "DELETE",
+          "url": "http://localhost:3000/usuarios/Mx3Ziujp65CNSibO",
+          "headers": {
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "x-dns-prefetch-control": "off",
+            "x-frame-options": "SAMEORIGIN",
+            "strict-transport-security": "max-age=15552000; includeSubDomains",
+            "x-download-options": "noopen",
+            "x-content-type-options": "nosniff",
+            "x-xss-protection": "1; mode=block",
+            "content-type": "application/json; charset=utf-8",
+            "content-length": "51",
+            "date": "Fri, 11 Sep 2026 16:55:12 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "message": "Registro excluído com sucesso"
+          },
+          "url": "http://localhost/usuarios/Mx3Ziujp65CNSibO",
+          "responseTime": 5,
+          "duration": 5,
+          "size": 51
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.006591,
+        "name": "Excluir Usuario",
+        "suitename": "C:\\bruno-api-serveRest\\Usuarios\\Excluir Usuario",
+        "path": "Usuarios\\Excluir Usuario.yml",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "login\\Login.yml"
+        },
+        "request": {
+          "method": "POST",
+          "url": "http://localhost:3000/login",
+          "headers": {
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"email\": \"fulano@qa.com\",\n  \"password\": \"teste\"\n}"
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "x-dns-prefetch-control": "off",
+            "x-frame-options": "SAMEORIGIN",
+            "strict-transport-security": "max-age=15552000; includeSubDomains",
+            "x-download-options": "noopen",
+            "x-content-type-options": "nosniff",
+            "x-xss-protection": "1; mode=block",
+            "content-type": "application/json; charset=utf-8",
+            "content-length": "265",
+            "date": "Fri, 11 Sep 2026 16:55:12 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "message": "Login realizado com sucesso",
+            "authorization": "Bearer ********"
+          },
+          "url": "http://localhost/login",
+          "responseTime": 6,
+          "duration": 6,
+          "size": 265
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.0875149,
+        "name": "Login",
+        "suitename": "C:\\bruno-api-serveRest\\login\\Login",
+        "path": "login\\Login.yml",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "carrinhos\\Criar carrinho.yml"
+        },
+        "request": {
+          "method": "POST",
+          "url": "http://localhost:3000/carrinhos",
+          "headers": {
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"produtos\": [\n    {\n      \"idProduto\": \"BeeJh5lz3k6kSIzA\",\n      \"quantidade\": 1\n    },\n    {\n      \"idProduto\": \"YaeJ455lz3k6kSIzA\",\n      \"quantidade\": 3\n    }\n  ]\n}"
+        },
+        "response": {
+          "status": 400,
+          "statusText": "Bad Request",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "x-dns-prefetch-control": "off",
+            "x-frame-options": "SAMEORIGIN",
+            "strict-transport-security": "max-age=15552000; includeSubDomains",
+            "x-download-options": "noopen",
+            "x-content-type-options": "nosniff",
+            "x-xss-protection": "1; mode=block",
+            "content-type": "application/json; charset=utf-8",
+            "content-length": "61",
+            "date": "Fri, 11 Sep 2026 16:55:12 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "message": "Não é permitido ter mais de 1 carrinho"
+          },
+          "url": "http://localhost/carrinhos",
+          "responseTime": 7,
+          "duration": 7,
+          "size": 61
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.0090493,
+        "name": "Criar carrinho",
+        "suitename": "C:\\bruno-api-serveRest\\carrinhos\\Criar carrinho",
+        "path": "carrinhos\\Criar carrinho.yml",
+        "iterationIndex": 0
+      }
+    ],
+    "summary": {
+      "totalRequests": 7,
+      "passedRequests": 7,
+      "failedRequests": 0,
+      "errorRequests": 0,
+      "skippedRequests": 0,
+      "skippedByBail": 0,
+      "totalAssertions": 5,
+      "passedAssertions": 5,
+      "failedAssertions": 0,
+      "totalTests": 3,
+      "passedTests": 3,
+      "failedTests": 0,
+      "totalPreRequestTests": 0,
+      "passedPreRequestTests": 0,
+      "failedPreRequestTests": 0,
+      "totalPostResponseTests": 0,
+      "passedPostResponseTests": 0,
+      "failedPostResponseTests": 0
+    }
+  }
+]

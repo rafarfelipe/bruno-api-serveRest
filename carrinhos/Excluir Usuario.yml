@@ -1,12 +1,21 @@
 info:
   name: Excluir Usuario
   type: http
-  seq: 4
+  seq: 8
 
 http:
   method: DELETE
   url: "{{baseUrl}}/usuarios/{{usuarioId}}"
   auth: inherit
+
+runtime:
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "200"
+    - expression: res.body.message
+      operator: eq
+      value: Registro excluído com sucesso
 
 settings:
   encodeUrl: true

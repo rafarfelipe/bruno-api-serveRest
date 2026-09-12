@@ -1,0 +1,26 @@
+info:
+  name: Listar Carrinhos
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/carrinhos"
+  auth: inherit
+
+runtime:
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "200"
+    - expression: res.body.quantidade
+      operator: isDefined
+    - expression: res.body.carrinhos
+      operator: isArray
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

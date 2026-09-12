@@ -1,0 +1,34 @@
+info:
+  name: Cadastrar Produto sem Token
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{baseUrl}}/produtos"
+  body:
+    type: json
+    data: |-
+      {
+        "nome": "Produto Sem Admin {{$timestamp}}",
+        "preco": 470,
+        "descricao": "Mouse",
+        "quantidade": 381
+      }
+  auth: inherit
+
+runtime:
+  assertions:
+    - expression: res.status
+      operator: eq
+      value: "401"
+    - expression: res.body.message
+      operator: eq
+      value: Token de acesso ausente, inválido, expirado ou usuário do token não existe mais
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
