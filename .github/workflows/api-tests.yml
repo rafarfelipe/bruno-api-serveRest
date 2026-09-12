@@ -1,0 +1,43 @@
+name: API Tests
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  api-tests:
+    runs-on: ubuntu-latest
+    services:
+      serverest:
+        image: paulogoncalvesbh/serverest:latest
+        ports:
+          - 3000:3000
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Aguarda o ServeRest responder
+        run: |
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:3000/produtos > /dev/null && break
+            echo "Aguardando ServeRest subir... (tentativa $i)"
+            sleep 1
+          done
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+
+      - name: Install Bruno CLI
+        run: npm install -g @usebruno/cli
+
+      - name: Run Bruno tests
+        run: bru run --env local --reporter-junit results.xml
+
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: bruno-report
+          path: results.xml
