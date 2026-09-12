@@ -266,5 +266,3 @@ Para contribuir com melhorias na suíte:
 Este repositório é focado em testes de API e validação de comportamento funcional, sendo útil como base para automação de regressão, garantia de qualidade e integração contínua.
 
 ---
-
-Se quiser, posso também fazer uma segunda versão com tabela de endpoints e cobertura por módulo.
