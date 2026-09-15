@@ -32,6 +32,9 @@ jobs:
       - name: Install Bruno CLI
         run: npm install -g @usebruno/cli
 
+      - name: Prepare report directory
+        run: mkdir -p reports
+
       - name: Run Bruno tests
         working-directory: ./collection
         run: bru run --env local --reporter-junit ../reports/results.xml
