@@ -1,1 +1,0 @@
-Preço mínimo de produto passa a ser R$ 1. Isso representa o código do time, a regra de negócio que mudou de verdade num cenário real.
