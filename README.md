@@ -43,13 +43,15 @@ npm install -g @usebruno/cli
 ### Executar a suíte
 
 ```bash
+cd collection
 bru run --env local
 ```
 
 ### Gerar relatório em XML
 
 ```bash
-bru run --env local --reporter-junit results.xml
+cd collection
+bru run --env local --reporter-junit ../reports/results.xml
 ```
 
 ## Endpoints principais
@@ -86,28 +88,31 @@ A arquitetura do projeto é orientada por coleções e cenários de teste, organ
 ```text
 [Bruno Collection]
         │
-        ├── Login
-        │   ├── Login Admin
-        │   └── Login Cliente
+        └── collection/
+            ├── Login
+            │   ├── Login Admin
+            │   └── Login Cliente
         │
-        ├── Usuarios
-        │   ├── Criar Usuario
-        │   ├── Listar Usuarios
-        │   ├── Alterar Usuario
-        │   └── Excluir Usuario
+            ├── Usuarios
+            │   ├── Criar Usuario
+            │   ├── Listar Usuarios
+            │   ├── Alterar Usuario
+            │   └── Excluir Usuario
         │
-        ├── Produtos
-        │   ├── Cadastrar Produtos
-        │   ├── Buscar Produto Por Nome
-        │   └── Listar produtos
+            ├── Produtos
+            │   ├── Cadastrar Produtos
+            │   ├── Buscar Produto Por Nome
+            │   └── Listar produtos
         │
-        ├── carrinhos
-        │   ├── Criar carrinho
-        │   ├── Concluir Compra
-        │   └── Listar Carrinhos
+            ├── carrinhos
+            │   ├── Criar carrinho
+            │   ├── Concluir Compra
+            │   └── Listar Carrinhos
         │
-        └── environments/
-            └── local.yml
+            └── environments/
+                └── local.yml
+
+        └── reports/
 ```
 
 ### Fluxo de execução
@@ -125,18 +130,16 @@ A arquitetura do projeto é orientada por coleções e cenários de teste, organ
 ├── .github/
 │   └── workflows/
 │       └── api-tests.yml
-├── App/
-├── carrinhos/
-├── environments/
-├── login/
-├── Produtos/
-├── Usuarios/
+├── collection/
+│   ├── Login/
+│   ├── Produtos/
+│   ├── Usuarios/
+│   ├── carrinhos/
+│   ├── environments/
+│   └── opencollection.yml
+├── reports/
 ├── .gitignore
-├── opencollection.yml
 ├── README.md
-├── results.html
-├── results.json
-├── results.xml
 └── ...
 ```
 
@@ -172,20 +175,22 @@ npm install -g @usebruno/cli
 ### 3) Executar a coleção
 
 ```bash
+cd collection
 bru run --env local
 ```
 
 Para gerar relatório em XML:
 
 ```bash
-bru run --env local --reporter-junit results.xml
+cd collection
+bru run --env local --reporter-junit ../reports/results.xml
 ```
 
 ## Ambientes
 
 O ambiente padrão configurado é `local`, definido em:
 
-- `environments/local.yml`
+- `collection/environments/local.yml`
 
 Ele define a URL base da API e as variáveis de autenticação e sessão.
 
@@ -217,7 +222,7 @@ A workflow:
 
 ## Relatórios
 
-Os arquivos de resultado gerados (`results.html`, `results.json`, `results.xml`) são artefatos de execução e ficam ignorados no versionamento para evitar ruído no repositório. O projeto já inclui regra no `.gitignore` para esse comportamento.
+Os arquivos de resultado gerados em `reports/` são artefatos de execução e ficam ignorados no versionamento para evitar ruído no repositório. O projeto já inclui regra no `.gitignore` para esse comportamento.
 
 ## Troubleshooting
 
@@ -232,7 +237,7 @@ curl http://localhost:3000/produtos
 
 ### Bruno não encontra o ambiente
 
-Confirme se o arquivo `environments/local.yml` existe e se o comando foi executado com o ambiente correto:
+Confirme se o arquivo `collection/environments/local.yml` existe e se o comando foi executado com o ambiente correto:
 
 ```bash
 bru run --env local
@@ -264,7 +269,3 @@ Para contribuir com melhorias na suíte:
 ## Observações
 
 Este repositório é focado em testes de API e validação de comportamento funcional, sendo útil como base para automação de regressão, garantia de qualidade e integração contínua.
-
----
-
-Se quiser, posso também fazer uma segunda versão com tabela de endpoints e cobertura por módulo.
